@@ -11,7 +11,6 @@ import br.com.teste1gft.entidades.ItemPedido;
 import br.com.teste1gft.entidades.Pedido;
 import br.com.teste1gft.entidades.Pratos;
 import br.com.teste1gft.service.PratosService;
-import com.sun.imageio.plugins.common.I18N;
 import java.util.Collections;
 import java.util.Map;
 
@@ -19,7 +18,7 @@ import java.util.Map;
  *
  * @author Renan
  */
-public class ControlePedidos {
+public class ControlePedidos implements IControlePedidos {
 
     private final PratosService pratoService;
     private Pedido novoPedido;
@@ -28,6 +27,7 @@ public class ControlePedidos {
         pratoService = new PratosService();
     }
 
+    @Override
     public String getOpcoes() {
         StringBuilder opcoes = new StringBuilder();
         opcoes.append("Tipo de Prato  \t        Manhã \t Noite  \n");//cabecalho
@@ -55,6 +55,7 @@ public class ControlePedidos {
         return opcoes.toString();
     }
 
+    @Override
     public String onFazerPedido(String pedidoDigitadoPeloUsuario) {
 
         //Pega os parametros passados por , retira os espaços e coloca tudo em lowercase

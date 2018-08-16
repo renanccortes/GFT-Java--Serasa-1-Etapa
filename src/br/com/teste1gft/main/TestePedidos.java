@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.teste1gft.tests;
+package br.com.teste1gft.main;
 
 import br.com.teste1gft.controle.ControlePedidos;
 import java.util.ArrayList;
 import java.util.List;
 import junit.framework.TestCase;
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
+import static org.junit.matchers.JUnitMatchers.containsString;
 
 /**
  *

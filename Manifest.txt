@@ -1,1 +1,0 @@
-jar cfm JUnitTeste.jar Manifest.txt D:\Dados GED\Projetos HD\Projetos GED\Teste1-GFT\src\teste1\gft\Teste1GFT.class
