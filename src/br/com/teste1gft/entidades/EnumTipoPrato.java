@@ -31,4 +31,19 @@ public enum EnumTipoPrato {
         return "" + tipo;
     }
 
+    public static EnumTipoPrato fromString(String name) {
+        switch (name) {
+            case "1":
+                return EnumTipoPrato.ENTRADA;
+            case "2":
+                return EnumTipoPrato.ACOMPANHAMENTO;
+            case "3":
+                return EnumTipoPrato.BEBIDA;
+            case "4":
+                return EnumTipoPrato.SOBREMESA;
+            default:
+                return null;
+        }
+    }
+
 }

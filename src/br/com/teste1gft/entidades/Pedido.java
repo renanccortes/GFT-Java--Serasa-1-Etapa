@@ -22,9 +22,12 @@ public class Pedido {
         this.periodo = periodo;
         itensPedido = new ArrayList<>();
     }
+    
+     
 
     public void adicionarItemPedido(ItemPedido itemPedido) {
         if (itensPedido.contains(itemPedido)) {
+
             itemPedido = itensPedido.get(itensPedido.indexOf(itemPedido));
             itemPedido.adicionaQuantidade();
         } else {
@@ -56,12 +59,13 @@ public class Pedido {
     @Override
     public String toString() {
         StringBuilder retorno = new StringBuilder();
-        //adiciona o periodo na string
-        retorno.append(periodo.toString());
 
         //inclui todos os pedidos na string
         for (ItemPedido item : itensPedido) {
-            retorno.append(", ").append(item.toString());
+            if (!retorno.toString().isEmpty()) {
+                retorno.append(", ");
+            }
+            retorno.append(item.toString());
         }
 
         return retorno.toString();

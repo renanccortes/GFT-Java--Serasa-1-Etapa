@@ -17,6 +17,7 @@ public enum EnumNomePrato {
     BATATA("batata"),
     VINHO("vinho"),
     BOLO("bolo"),
+    CAFE("café"),
     NADA("nada");
 
     private final String nome;

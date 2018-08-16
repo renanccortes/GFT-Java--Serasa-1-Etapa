@@ -21,6 +21,8 @@ public class Pratos {
     public Pratos() {
         nomeDoPrato = EnumNomePrato.NADA;
     }
+    
+    
 
     //usado para erro porém com posicionamento
     public Pratos(EnumTipoPrato tipoDePrato) {

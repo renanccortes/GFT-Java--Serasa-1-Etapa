@@ -11,6 +11,7 @@ import br.com.teste1gft.entidades.ItemPedido;
 import br.com.teste1gft.entidades.Pedido;
 import br.com.teste1gft.entidades.Pratos;
 import br.com.teste1gft.service.PratosService;
+import com.sun.imageio.plugins.common.I18N;
 import java.util.Collections;
 import java.util.Map;
 
@@ -29,7 +30,7 @@ public class ControlePedidos {
 
     public String getOpcoes() {
         StringBuilder opcoes = new StringBuilder();
-        opcoes.append("Tipo de Prato  \t     Manhã \t  Noite  \n");//cabecalho
+        opcoes.append("Tipo de Prato  \t        Manhã \t Noite  \n");//cabecalho
         opcoes.append("-----------------------------------------\n");
         Map<EnumTipoPrato, Map<EnumPeriodo, Pratos>> todosPratos = pratoService.getTodosPratos();
 
@@ -39,8 +40,14 @@ public class ControlePedidos {
             Map<EnumPeriodo, Pratos> pratos = entry.getValue();
 
             opcoes.append(entry.getKey()).append(" (").append(entry.getKey().name()).append(") "); //coluna1  
-            opcoes.append("\t\t").append(pratos.get(EnumPeriodo.MANHA).getNomeDoPrato()); //coluna2
-            opcoes.append("\t").append(pratos.get(EnumPeriodo.NOITE).getNomeDoPrato()); //coluna3
+            if (entry.getKey().name().length() <= 10) { //incluindo tabulação se for menor que 10 caracter
+                opcoes.append("\t\t");
+            } else {
+                opcoes.append("     ");
+            }
+
+            opcoes.append(pratos.get(EnumPeriodo.MANHA).getNomeDoPrato()); //coluna2
+            opcoes.append("\t ").append(pratos.get(EnumPeriodo.NOITE).getNomeDoPrato()); //coluna3
             opcoes.append("\n");
 
         }
@@ -48,12 +55,30 @@ public class ControlePedidos {
         return opcoes.toString();
     }
 
-    public String onFazerPedido(String periodo, String[] pratosPedidos) {
+    public String onFazerPedido(String pedidoDigitadoPeloUsuario) {
 
-        EnumPeriodo periodoEnum = EnumPeriodo.valueOf(periodo);
+        //Pega os parametros passados por , retira os espaços e coloca tudo em lowercase
+        String pedido = pedidoDigitadoPeloUsuario.toLowerCase().replace(" ", "");
+
+        String[] opcoes = pedido.split(",");
+        if (opcoes.length <= 1) {
+            return getOpcoes().concat("\n\nerro:  argumentos inválidos, Ex: MANHÃ, 1, 2, 3");
+        } else {
+
+            return onFazerPedido(opcoes);
+        }
+
+    }
+
+    private String onFazerPedido(String[] valores) {
+        EnumPeriodo periodoEnum = null;
+        try {
+            periodoEnum = EnumPeriodo.fromString(valores[0]);
+        } catch (java.lang.IllegalArgumentException e) {
+
+        }
         if (periodoEnum == null) {
-            System.out.println("Periodo inválido");
-            return "Periodo inválido";
+            return getOpcoes().concat("\n\nerro: periodo inválido\n");
         }
 
         novoPedido = new Pedido(periodoEnum);
@@ -61,15 +86,20 @@ public class ControlePedidos {
         /*
             Converte os pratos pedidos e faz a busca pelo prato
          */
-        for (String pratoPedido : pratosPedidos) {
-            EnumTipoPrato tipoPratoEnum = EnumTipoPrato.valueOf(pratoPedido);
+        for (int i = 1; i < valores.length; i++) {
+            EnumTipoPrato tipoPratoEnum = null;
+            try {
+                tipoPratoEnum = EnumTipoPrato.fromString(valores[i].trim());
+            } catch (java.lang.IllegalArgumentException e) {
+            }
             if (tipoPratoEnum == null) {
                 novoPedido.adicionarItemPedido(new Pratos());
             } else {
                 Pratos prato = pratoService.getPrato(tipoPratoEnum, periodoEnum);
                 ItemPedido itemPedido = new ItemPedido(prato);
                 if (novoPedido.getItensPedido().contains(itemPedido) && !isPodeRepetirPrato(periodoEnum, tipoPratoEnum)) {
-                    // não inclui pois não pode pedir mais de 1
+                    // não inclui pois não pode pedir mais de 1  
+
                 } else {
                     novoPedido.adicionarItemPedido(itemPedido);
                 }
@@ -81,7 +111,7 @@ public class ControlePedidos {
          */
         Collections.sort(novoPedido.getItensPedido()); // ordena
 
-        return novoPedido.toString();
+        return novoPedido.toString().replace("nada", "erro");
 
     }
 

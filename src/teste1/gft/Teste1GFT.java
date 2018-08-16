@@ -5,6 +5,7 @@
  */
 package teste1.gft;
 
+import br.com.teste1gft.controle.ControlePedidos;
 import java.util.Scanner;
 
 /**
@@ -17,11 +18,23 @@ public class Teste1GFT {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
 
-        System.out.println("Digite sua idade: ");
-        int idade = s.nextInt();
-        System.out.println("Vc tem " + idade + " anos.");
+        while (iniciaAplicacao()) {
+
+        }
+
+    }
+
+    public static boolean iniciaAplicacao() {
+        Scanner s = new Scanner(System.in);
+        ControlePedidos controlePedidos = new ControlePedidos();
+        //System.out.println(controlePedidos.getOpcoes());
+        System.out.println("Informe seu pedido:");
+        String pedido = s.nextLine();
+        String retorno = controlePedidos.onFazerPedido(pedido);
+        System.out.println(retorno);
+        //return retorno.contains("erro");
+        return true;
     }
 
 }

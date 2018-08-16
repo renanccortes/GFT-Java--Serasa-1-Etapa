@@ -52,7 +52,7 @@ public class PratosService {
         todosPratos.put(EnumTipoPrato.ACOMPANHAMENTO, pratosAcompanhamento);
 
         Map<EnumPeriodo, Pratos> pratosBebidas = new HashMap<>();
-        pratosBebidas.put(EnumPeriodo.MANHA, new Pratos(EnumTipoPrato.BEBIDA, EnumNomePrato.CARNE, EnumPeriodo.MANHA));
+        pratosBebidas.put(EnumPeriodo.MANHA, new Pratos(EnumTipoPrato.BEBIDA, EnumNomePrato.CAFE, EnumPeriodo.MANHA));
         pratosBebidas.put(EnumPeriodo.NOITE, new Pratos(EnumTipoPrato.BEBIDA, EnumNomePrato.VINHO, EnumPeriodo.NOITE));
 
         todosPratos.put(EnumTipoPrato.BEBIDA, pratosBebidas);

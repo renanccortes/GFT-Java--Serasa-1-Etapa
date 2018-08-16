@@ -11,8 +11,8 @@ package br.com.teste1gft.entidades;
  */
 public enum EnumPeriodo {
 
-    MANHA("Manhã"),
-    NOITE("Noite");
+    MANHA("manhã"),
+    NOITE("noite");
 
     private final String nome;
 
@@ -24,6 +24,17 @@ public enum EnumPeriodo {
     public String toString() {
 
         return this.nome;
+    }
+
+    public static EnumPeriodo fromString(String name) {
+
+        try {
+            name = name.replace("ã", "a").toUpperCase();//aceita com e sem acentos...
+            return EnumPeriodo.valueOf(name);
+        } catch (IllegalArgumentException ex) {
+        }
+
+        return null;
     }
 
 }

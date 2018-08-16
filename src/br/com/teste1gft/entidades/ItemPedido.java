@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class ItemPedido implements Comparable {
 
-    private int quantidade;
+    private int quantidade = 1;
     private Pratos prato;
 
     public ItemPedido(Pratos prato) {
@@ -43,7 +43,7 @@ public class ItemPedido implements Comparable {
     @Override
     public String toString() {
         if (quantidade > 1) {
-            return prato.getNomeDoPrato().toString() + " (" + quantidade + "x)";
+            return prato.getNomeDoPrato().toString() + " (x" + quantidade + ")";
         } else {
             return prato.getNomeDoPrato().toString();
         }
