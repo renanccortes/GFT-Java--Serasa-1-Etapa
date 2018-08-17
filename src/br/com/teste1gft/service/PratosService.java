@@ -29,7 +29,6 @@ public class PratosService {
         return todosPratos;
     }
 
-
     public Pratos getPrato(EnumTipoPrato tipoPrato, EnumPeriodo tipoPeriodo) {
         Map<EnumPeriodo, Pratos> pratoPorTipo = todosPratos.get(tipoPrato);
         Pratos prato = pratoPorTipo.get(tipoPeriodo);

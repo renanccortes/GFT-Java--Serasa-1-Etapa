@@ -1,1 +1,2 @@
-java -jar dist/Teste1-GFT.jar
+java -jar dist/Teste1-GFT.jar testes
+pause

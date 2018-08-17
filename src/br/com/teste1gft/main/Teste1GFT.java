@@ -52,8 +52,8 @@ public class Teste1GFT {
         String pedido = s.nextLine();
         String retorno = controlePedidos.onFazerPedido(pedido);
         System.out.println(retorno);
-        //return retorno.contains("erro");
-        return true;
+        return retorno.contains("erro");
+
     }
 
 }
