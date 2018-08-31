@@ -41,22 +41,32 @@ tipo de prato.
 GFT Brasil | Teste Prático | Processo de Seleção
 
 Tipos de Pratos para cada período
-Tipo de Prato Manhã Noite
-1 (entrada) ovos carne
-2 (acompanhamento0 torrada batata
-3 (bebida) café vinho
-4 (sobremesa) Não se aplica bolo
-Exemplos de entrada e saída:
+
+Tipo de Prato Manhã Noite:
+
+O código-fonte será avaliado pelos seguintes critérios:
+1. (entrada) ovos carne
+2. (acompanhamento) torrada batata
+3. (bebida) café vinho
+4. (sobremesa) Não se aplica bolo
+
+
+Exemplos de entrada e saída: 
 
  Entrada: manhã, 1, 2, 3
  Saída: ovos, torrada, café
+
  Entrada: manhã, 2, 1, 3
  Saída: ovos, torrada, café
+
  Entrada: manhã, 1, 2, 3, 4
  Saída: ovos, torrada, café, erro
+
  Entrada: manhã, 1, 2, 3, 3, 3
  Saída: ovos, torrada, café (x3)
+
  Entrada: noite, 1, 2, 3, 4
  Saída: carne, batata, vinho, bolo
+
  Entrada: noite, 1, 2, 2, 4
  Saída carne, batata (x2), bolo
